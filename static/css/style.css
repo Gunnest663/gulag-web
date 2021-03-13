@@ -44,10 +44,6 @@ html {
   text-align: center !important;
 }
 
-.is-padless {
-  padding: 0 !important;
-}
-
 .is-reset {
   padding: 0 !important;
   margin: 0 !important;
@@ -85,22 +81,6 @@ html {
 
 a.foot-link {
   margin: 8px;
-}
-
-.container {
-  -webkit-animation: slideup 0.2s ease;
-  transition: 0.2s ease;
-}
-
-@-webkit-keyframes slideup {
-  0% {
-    -webkit-transform: translateY(10px);
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: translateY(0);
-    opacity: 1;
-  }
 }
 
 @-webkit-keyframes appear {

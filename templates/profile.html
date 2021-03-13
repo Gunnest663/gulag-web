@@ -21,8 +21,7 @@
                 <h1 class="title">
                     <p class="ranks">
                         <img src="/static/images/flags/{{ user['country']|upper }}.png" class="profile-flag"><span
-                            class="bgf">{{
-                            user['name'] }}</span>
+                            class="bgf">{{ user['name'] }}</span>
                     </p>
                 </h1>
                 <!-- This part should change it to your domain like https://c.varkaria.cyou -->
@@ -32,7 +31,7 @@
                 <!-- end-require -->
             </div>
             <div class="anime-girl"><img
-                    src="https://www.pngarts.com/files/8/Anime-Render-PNG-Image-Transparent-Background.png" alt=""
+                    src="" alt=""
                     srcset=""></div>
         </div>
         <div class="profile-flex">
@@ -75,7 +74,7 @@
     </div>
     <div class="second-block">
         <div class="columns is-marginless two-sides">
-            <div class="column is-one-third">
+            <div class="column" id="stats-block">
                 <!--<div class="header">
                     <div class="title">
                         <i class="fas fa-user-friends"></i> Rank
@@ -215,7 +214,7 @@
                     </div>
                     <div v-if="bestdata.length != 0" :class="'scores' +(loaddata[0] ? ' load' : '')">
                         <div v-for="(map, index) in bestdata" class="map-single">
-                            <div @click="LoadReplay(map.id,this.mods)" class="map-data">
+                            <div @click="LoadReplay(index, 'best')" class="map-data">
                                 <div class="map-content1">
                                     <div class="map-image">
                                         <img v-bind:src="'https://assets.ppy.sh/beatmaps/' + map.set_id + '/covers/card.jpg'"
@@ -281,7 +280,7 @@
                     </div>
                     <div v-if="recentdata.length != 0" :class="'scores' +(loaddata[1] ? ' load' : '')">
                         <div v-for="(map, index) in recentdata" class="map-single">
-                            <div @click="LoadReplay(map.id,this.mods)" class="map-data">
+                            <div @click="LoadReplay(index, 'recent')" class="map-data">
                                 <div class="map-content1">
                                     <div class="map-image">
                                         <img v-bind:src="'https://assets.ppy.sh/beatmaps/' + map.set_id + '/covers/card.jpg'"

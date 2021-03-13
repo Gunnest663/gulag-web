@@ -16,12 +16,8 @@ function togglenavbar() {
     document.getElementById('navbar-burger').classList.toggle("is-active");
 }
 
-var modal = document.getElementById('contentmodal');
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
-    if (modal.innerHTML.length !== 0) {
-        if (event.target.id !== modal) {
-            document.getElementById('modaldisplayer').className = "modal"
-        }
-    }
-}
+var modal = document.querySelector('.modal');  // assuming you have only 1
+modal.querySelector('.modal-background').addEventListener('click', function (e) {
+    e.preventDefault();
+    modal.classList.remove('is-active');
+});

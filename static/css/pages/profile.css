@@ -12,6 +12,11 @@
   background: hsl(var(--main), 12%, 15%);
 }
 
+#stats-block {
+  flex: none;
+    width: 28%;
+}
+
 .stats-block {
   width: 100%;
   background: hsl(var(--main), 25%, 25%);
@@ -471,7 +476,7 @@ html {
   width: 100%;
   display: grid;
   grid-gap: 10px;
-  grid-template-columns: repeat(auto-fill, minmax(325px, 444px));
+  grid-template-columns: repeat(auto-fill, minmax(323px, 431px));
   margin: 8px 0;
 }
 
@@ -598,8 +603,8 @@ span.beatmap-mapper {
   .two-sides {
     display: contents !important;
   }
-  .column.is-one-third, .column.is-one-third-tablet {
-    flex: none;
+  #stats-block {
+    flex: unset;
     width: 100%;
   }
   .columns.is-marginless.is-2 {
