@@ -269,6 +269,8 @@ async def get_user_grade():
 
     if mode not in valid_modes:
         return b'invalid mode! (std, taiko, catch, mania)'
+    else:
+        mode = convert_mode_int(mode)
 
     if mods not in valid_mods:
         return b'invalid mods! (vn, rx, ap)'
@@ -276,47 +278,23 @@ async def get_user_grade():
     if not id:
         return b'missing id!'
 
-    q = f'SELECT grade FROM scores_{mods} WHERE mode = %s AND userid = %s'
+    q = f'SELECT grade FROM scores_{mods} WHERE mode = {mode} AND userid = %s'
 
-    scores = await glob.db.fetchall(q, [{'std': 0, 'taiko': 1, 'ctb': 2, 'mania': 3}[mode], id])
-    
-    x = 0
-    xh = 0
-    s = 0
-    sh = 0
-    a = 0
+    scores = await glob.db.fetchall(q, [id])
 
     if not scores:
-        grades = {
-            "x": 0,
-            "xh": 0,
-            "s": 0,
-           "sh": 0,
-            "a": 0
-        }
-
-        return jsonify(grades)
-
-
-    for score in (scores):
-        if score['grade'] == 'X':
-            x += 1
-        elif score['grade'] == 'XH':
-            xh += 1
-        elif score['grade'] == 'S':
-            s += 1
-        elif score['grade'] == 'SH':
-            sh += 1
-        elif score['grade'] == 'A':
-            a += 1
+        return '{"a":0,"s":0,"sh":0,"x":0,"xh":0}'
 
     grades = {
-        "x": x,
-        "xh": xh,
-        "s": s,
-        "sh": sh,
-        "a": a
+        "x": 0,
+        "xh": 0,
+        "s": 0,
+        "sh": 0,
+        "a": 0
     }
+
+    for score in (x for x in scores if x['grade'].lower() in grades):
+        grades[score['grade'].lower()] += 1 
 
     if glob.config.debug:
         log(''.join(q), Ansi.LGREEN)
