@@ -139,7 +139,7 @@ async def get_user_info():
 
     if glob.config.debug:
         log(' '.join(q), Ansi.LGREEN)
-    res = await glob.db.fetchall(' '.join(q), args)
+    res = await glob.db.fetch(' '.join(q), args)
     res_ach = await glob.db.fetchall(' '.join(q2), args)
     return jsonify(userdata=res,achivement=res_ach) if res else b'{}'
 
@@ -256,44 +256,68 @@ async def get_player_most():
     res = await glob.db.fetchall(' '.join(q), args)
     return jsonify(maps=res) if res else jsonify(maps=[])
 
+""" /get_user_grade 
+Thanks minisbett#8873 for making this
+yeah i made it before and it's working
+but it's terrible idea to count it : (
+"""
 @api.route('/get_user_grade') # GET
 async def get_user_grade():
-    # get request args
+    mode = request.args.get('mode', default='std', type=str)
+    mods = request.args.get('mods', default='rx', type=str)
     id = request.args.get('id', type=int)
-    mode = request.args.get('mode', type=str)
-    mods = request.args.get('mods', type=str)
 
-    # check if required parameters are met
-    if not id:
-        return b'missing parameters! (id)'
-    
+    if mode not in valid_modes:
+        return b'invalid mode! (std, taiko, catch, mania)'
+
     if mods not in valid_mods:
         return b'invalid mods! (vn, rx, ap)'
-    
-    if mode in valid_modes:
-        mode = convert_mode_int(mode)
-    else:
-        return b'wrong mode type! (std, taiko, catch, mania)'
-    
-    grades = ['xh','x','sh','s','a']
 
-    # fetch grades
-    q = [f'SELECT']
+    if not id:
+        return b'missing id!'
+
+    q = f'SELECT grade FROM scores_{mods} WHERE mode = %s AND userid = %s'
+
+    scores = await glob.db.fetchall(q, [{'std': 0, 'taiko': 1, 'ctb': 2, 'mania': 3}[mode], id])
     
-    for grade in grades:
-        if grade == 'a':
-            q.append(f'(SELECT COUNT(id) FROM scores_{mods} WHERE grade="{grade}" and mode = {mode}) as {grade}')
-            break
-        q.append(f'(SELECT COUNT(id) FROM scores_{mods} WHERE grade="{grade}" and mode = {mode}) as {grade},')
-    
-    # argumnts
-    args = []
-    
-    q.append(f'FROM scores_{mods}')
-    q.append(f'WHERE userid = %s AND mode = {mode}')
-    args.append(id)
+    x = 0
+    xh = 0
+    s = 0
+    sh = 0
+    a = 0
+
+    if not scores:
+        grades = {
+            "x": 0,
+            "xh": 0,
+            "s": 0,
+           "sh": 0,
+            "a": 0
+        }
+
+        return jsonify(grades)
+
+
+    for score in (scores):
+        if score['grade'] == 'X':
+            x += 1
+        elif score['grade'] == 'XH':
+            xh += 1
+        elif score['grade'] == 'S':
+            s += 1
+        elif score['grade'] == 'SH':
+            sh += 1
+        elif score['grade'] == 'A':
+            a += 1
+
+    grades = {
+        "x": x,
+        "xh": xh,
+        "s": s,
+        "sh": sh,
+        "a": a
+    }
 
     if glob.config.debug:
-        log(' '.join(q), Ansi.LGREEN)
-    res = await glob.db.fetch(' '.join(q), args)
-    return jsonify(res) if res else b'{"a": 0, "s": 0, "sh": 0, "x": 0, "xh": 0}'
+        log(''.join(q), Ansi.LGREEN)
+    return jsonify(grades)
