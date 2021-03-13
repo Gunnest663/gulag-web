@@ -110,7 +110,7 @@
                                 <td><b>PP</b></td>
                                 <td class="right-aligned">
                                     <div v-if="(this.mode == 'std') || (this.mode == 'taiko')">
-                                        <% addCommas(userdata[0][`pp_${mods}_${mode}`]) %>
+                                        <% addCommas(userdata[`pp_${mods}_${mode}`]) %>
                                     </div>
                                     <div v-else>
                                         not yet
@@ -120,37 +120,37 @@
                             <tr>
                                 <td><b>Ranked score</b></td>
                                 <td class="right-aligned">
-                                    <% addCommas(userdata[0][`rscore_${mods}_${mode}`]) %>
+                                    <% addCommas(userdata[`rscore_${mods}_${mode}`]) %>
                                 </td>
                             </tr>
                             <tr>
                                 <td><b>Total score</b></td>
                                 <td class="right-aligned">
-                                    <% addCommas(userdata[0][`tscore_${mods}_${mode}`]) %>
+                                    <% addCommas(userdata[`tscore_${mods}_${mode}`]) %>
                                 </td>
                             </tr>
                             <tr>
                                 <td><b>Max combo</b></td>
                                 <td class="right-aligned">
-                                    <% addCommas(userdata[0][`maxcombo_${mods}_${mode}`]) %>
+                                    <% addCommas(userdata[`maxcombo_${mods}_${mode}`]) %>
                                 </td>
                             </tr>
                             <tr>
                                 <td><b>Playcount</b></td>
                                 <td class="right-aligned">
-                                    <% addCommas(userdata[0][`plays_${mods}_${mode}`]) %>
+                                    <% addCommas(userdata[`plays_${mods}_${mode}`]) %>
                                 </td>
                             </tr>
                             <tr>
                                 <td><b>Playtime</b></td>
                                 <td class="right-aligned">
-                                    <% secondsToDhm(userdata[0][`playtime_${mods}_${mode}`]) %>
+                                    <% secondsToDhm(userdata[`playtime_${mods}_${mode}`]) %>
                                 </td>
                             </tr>
                             <tr>
                                 <td><b>Accuracy</b></td>
                                 <td class="right-aligned">
-                                    <% userdata[0][`acc_${mods}_${mode}`].toFixed(2) %>%
+                                    <% userdata[`acc_${mods}_${mode}`] %>%
                                 </td>
                             </tr>
                         </tbody>
