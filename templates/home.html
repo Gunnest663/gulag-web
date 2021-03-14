@@ -33,11 +33,14 @@
 </div>
 {% endif %}
 
-<div class="hero splash is-padless" id="home-hero">
+<div class="hero splash is-fullheight-with-navbar is-padless" id="home-hero">
   <div class="container is-flex is-lcentered">
-    <div class="columns is-vcentered is-marginless">
+    <div class="columns is-vcentered is-fullheight-with-navbar is-marginless">
       <div class="column is-size-2-desktop is-size-1-fullhd">
-        <h1 class="title is-spaced is-size-2-desktop is-size-1-fullhd">{{ appName() }}</h1>
+        <div class="is-flex is-vcentered title-withlogo">
+          <img src="/static/favicon/android-chrome-256x256.png" class="server-logo">
+          <h1 class="title is-spaced is-size-2-desktop is-size-1-fullhd">{{ appName() }}</h1>
+        </div>
         <h2 class="subtitle">
           We are an osu! private server built from the ground up with many
           unique features not seen elsewhere - for more information, check
@@ -56,7 +59,7 @@
         </div>
         {% endif %}
       </div>
-      <div class="column is-flex is-lcentered is-padless" id="mascot">
+      <div class="column is-flex is-lcentered is-fullheight-with-navbar is-vcentered is-padless" id="mascot">
         <div class="gulag-avatar"></div>
       </div>
     </div>

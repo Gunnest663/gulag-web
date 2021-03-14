@@ -1549,6 +1549,9 @@ a.navbar-item:hover {
 .section {
   padding: 3rem 1.5rem;
 }
+.is-fullheight-with-navbar {
+  min-height: calc(100vh - 4rem);
+}
 .footer {
   background-color: hsl(var(--main), 10%, 15%);
   padding: 3rem 1.5rem 6rem;
