@@ -25,7 +25,7 @@ Live Demonstrations
 
 Want a sneakpeek at what you'll get with gulag-web? Here are some examples!
 
-* [Miksu](https://miksu.pw/)
+* [Miksu](https://osu.miksu.pw/)
 
 There is so much more to come! So keep your eyes peeled~!
 
