@@ -108,13 +108,6 @@ async def page_not_found(e):
     # NOTE: we set the 404 status explicitly
     return await render_template('404.html'), 404
 
-from flask import render_template
-
-@app.errorhandler(413)
-async def page_not_found(e):
-    # note that we set the 404 status explicitly
-    return render_template('404.html'), 413
-
 """
 run app - run gulag-web.
 """
