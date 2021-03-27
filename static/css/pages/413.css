@@ -1,0 +1,47 @@
+*{
+    margin: 0;
+    font-family: Rubik;
+}
+
+@font-face {
+    font-family:Rubik;
+    src:url(https://cdn.jsdelivr.net/gh/HakuraSukinoe/bulma-hsl/Rubik.woff2) format("woff2 supports variations"),
+    url(https://cdn.jsdelivr.net/gh/HakuraSukinoe/bulma-hsl/Rubik.woff2) format("woff2-variations");
+    font-weight:100 1000;
+    font-stretch:25% 151%
+   }
+
+.main-block {
+    height: 100%;
+    width: 100%;
+    background-color: hsl(var(--main),10%,15%);
+    color: #fff;
+}
+
+.title-block {
+    text-align: center;
+    height: auto;
+    width: auto;
+    padding: 22px;
+    background-color: hsl(var(--main), 30%, 50%);
+}
+
+.error-title {
+    text-align: center;
+    font-size: 1.7em;
+    font-weight: 500;
+}
+
+.error-block {
+    text-align: center;
+    padding: 22px;
+}
+
+.error-subtitle {
+    font-size: 1.5em;
+    font-weight: 500;
+}
+
+li {
+    list-style-type: none;
+}
