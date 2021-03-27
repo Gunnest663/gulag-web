@@ -1,0 +1,84 @@
+:root{
+    --orange: #FF8C00;
+    --purple: #9400D3;	
+}
+
+#docsboard{
+    height:auto;
+    width: ;
+}
+
+.main-block {
+    height: auto;
+    width: auto;
+    max-width: 1152px;
+    background-color: hsl(var(--main),10%,15%);
+    color: #fff;
+    padding: 20px;
+}
+
+.title-block {
+    height: auto;
+    width: auto;
+    padding: 38px 22px 10px 22px;
+    background-color: hsl(var(--main), 30%, 50%);
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+
+.doc-title {
+    font-size: 1.7em;
+    font-weight: 500;
+}
+
+.doc-block {
+    padding: 22px;
+}
+
+.doc-subtitle {
+    font-size: 1.5em;
+    font-weight: 500;
+}
+
+ol {
+    padding: 0px 0px 10px 20px;
+}
+
+ol li:before {
+    counter-increment: section !important;
+    font-weight: 700;
+    content: counters(section, ".") ". ";
+}
+
+li {
+    list-style-type: none;
+}
+
+.doc-listing{
+    display:grid;
+    text-align: center;
+}
+
+#bot{
+    margin-top: 20px;
+}
+h1{
+    font-size: 25px;
+}
+table th{
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 20px;
+    padding-bottom: 5px;
+}
+table td {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+}
+.bn{
+    color: var(--orange);
+}
+.mod{
+    color: var(--purple);
+}
