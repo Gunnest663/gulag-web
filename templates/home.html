@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block title %} Home {% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="/static/css/pages/home.css">
+
+{% if flash %}
+<div class='noti-banner noti-banner-warning'>
+  <div class="container">
+    <div class="noti-column">
+      <div class='noti-col noti-col-icon'></div>
+      <div class='noti-col noti-col-label'>
+        <div class='noti-bannertype'>
+          {% if status=='error' %}
+          Warning
+          {% elif status=='success' %}
+          Notice
+          {% endif %}
+        </div>
+        <div class='noti-bannertext'>
+          {% if status=='error' %}
+          Uh oh! Be careful!
+          {% elif status=='success' %}
+          Hey! Listen!
+          {% endif %}
+        </div>
+      </div>
+      <div class='noti-banner-text'>
+        {{ flash }}
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<div class="main-block">
+  <div id="grid" class="columns is-reset is-flex">
+    <div class="column is-padless" id="mascot">
+      <img src="https://iteki.pw/static/images/ape.png">
+    </div>
+    <div class="column is-vcentered" id="title">
+      <div class="has-text-centered">
+        <p class="title">Welcome to Iteki.</p>
+        <p class="subtitle">
+          We are an osu! private server built from the ground up with many
+          unique features not seen elsewhere - for more information, check
+          out <a href="https://github.com/itekiosu/gulag">gulag</a>
+          and <a href="https://github.com/itekiosu/gulag-web">gulag-web</a>
+          on Github - we're fully open source!</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="pprecords">
+  <div class="main-block pp">
+    <div id="grid grpp" class="columns is-reset is-flex">
+        <div id="pp-record">
+            <h1>Current Vanilla PP Record</h1>
+            <p style="text-align: center; font-weight: bold;">{{ vnpp }}pp</p>
+            <p class="ppsub">done by <a href="https://iteki.pw/u/{{ vnuser }}">{{ vnuser }}</a></p>
+        </div>
+    </div>
+  </div>
+  <div class="main-block pp">
+    <div id="grid grpp" class="columns is-reset is-flex">
+        <div id="pp-record">
+          <h1>Current Relax PP Record</h1>
+          <p style="text-align: center; font-weight: bold;">{{ rxpp }}pp</p>
+          <p class="ppsub">done by <a href="https://iteki.pw/u/{{ rxuser }}">{{ rxuser }}</a></p>
+        </div>
+    </div>
+  </div>
+  <div class="main-block pp">
+    <div id="grid grpp" class="columns is-reset is-flex">
+        <div id="pp-record">
+          <h1>Current AutoPilot PP Record</h1>
+          <p style="text-align: center; font-weight: bold;">{{ appp }}pp</p>
+          <p class="ppsub">done by <a href="https://iteki.pw/u/{{ apuser }}">{{ apuser }}</a></p>
+        </div>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}

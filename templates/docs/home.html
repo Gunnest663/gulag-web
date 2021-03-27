@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% block title %} Documentation {% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="static/css/pages/settings.css">
+<link rel="stylesheet" href="static/css/pages/docs.css">
+<!-- start -->
+<div id="docsboard">
+    <div class="leaderboard-banner ug-docs links-teilung main-banner">
+        {% if session %}
+        <div class="main-selector">
+            <span class="simple-banner-desc">You're logged in as {{ session.user_data['name'] }}!</span>
+        </div>
+        {% endif %}
+        <div class="banner-text">Documentation</div>
+    </div>
+    <div class="main-block">
+        <div class="leaderboard-main-bg main-banner">
+            <span class="main-header-doc">Choose your section</span>
+            <div class="doc-listing">
+                <a class="listing-line" href="#bot">Bot Commands</a>
+                <a class="listing-line" href="#connection">Connection</a>
+                <a class="listing-line" href="#donating">Donating</a>
+                <!--
+                <a class="listing-line" href="#faq">Frequently Asked Questions</a>
+                <a class="listing-line" href="#manual">Manual Installation</a>
+                <a class="listing-line" href="#tos">Terms of Service</a>-->
+            </div>
+            <div class="section-one" id="bot">
+               <h1>Bot Commands</h1>
+               <table>
+                   <tbody>
+                        <tr>
+                            <th>Command</th>
+                            <th>Description</th>
+                       </tr>
+                       <tr>
+                           <td class="command">!help</td>
+                           <td class="desc">Shows information of all documented commands</td>
+                       </tr>
+                       <tr>
+                           <td class="command">!last</td>
+                           <td class="desc">Show information about your most recent score.</td>
+                       </tr>
+                       <tr>
+                           <td class="command">!roll (n)</td>
+                           <td class="desc">Roll an n-sided dice</td>
+                       </tr>
+                       <tr>
+                           <td class="command">!with</td>
+                           <td class="desc">Specify custom accuracy & mod combination with `/np`</td>
+                       </tr>
+                       <tr>
+                           <td class="command">!map <span class="bn">(Beatmap Nominators or higher)</span></td>
+                           <td class="desc">Changed the status of a map (/np)</td>
+                       </tr>
+                       <tr>
+                           <td class="command">!notes <span class="mod">(Moderators or higher)</span></td>
+                           <td class="desc">Shows all logs of a specified player.</td>
+                       </tr>
+                       <tr>
+                           <td class="command">!addnote <span class="mod">(Moderators or higher)</span></td>
+                           <td class="desc">Add a note to a specific player.</td>
+                       </tr>
+                        <tr>
+                            <td class="command">!silence <span class="mod">(Moderators or higher)</span></td>
+                            <td class="desc">Silence (mute) a player with a duration and reason</td>
+                        </tr>
+                        <tr>
+                           <td class="command">!unsilence <span class="mod">(Moderators or higher)</span></td>
+                           <td class="desc">Unsilence (unmute) a player.</td>
+                       </tr>
+                   </tbody>
+               </table>
+            </div>
+        </br>
+            <div class="section-two" id="connection">
+                <h1>Connection</h1>
+                <div class="connection-description">
+                    Thanks to peppy, private servers (like Iteki!) have official support within the client. This means there is theoretically no need for any external programs or certificates to connect to a private server. However, the method in which to do this revolves around creating a special shortcut with some arguments in it to connect to the server you wish.</br></br>Some people have struggled to do so, so we created a simple program to create this shortcut for you!</br>To download the patcher and connect to Iteki, you can click <a href="/static/ItekiPatcher.exe">here</a>.
+                </div>
+             </div>
+            </br>
+             <div class="section-three" id="donating">
+                <h1>Donating</h1>
+                <div class="connection-description">
+                    Iteki is ran purely by a staff member of teenagers. To keep the server going, we need money and as you can imagine that is difficult - we do not have the average paid day job. We don't expect any donations however any made are greatly appreciated! For now, if you would like to donate then please join the Discord and message tsunyoku and he will help you to donate.
+                </div>
+             </div>
+             <!--
+             <div class="section-three" id="faq">
+                <h1>Frequently Asked Questions</h1>
+                <div>
+                    <h3>Question</h3>
+                    <div class="answer">Answer</div>
+                </div>
+             </div>-->
+        </div>
+    </div>
+</div>
+{% endblock %}

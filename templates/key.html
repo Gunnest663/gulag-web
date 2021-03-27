@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %} Key Generator {% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="static/css/pages/settings.css">
+<link rel="stylesheet" href="static/css/pages/key.css">
+<br>
+<div id="settingsboard">
+	<div class="leaderboard-banner ug-settings links-teilung main-banner">
+		<div class="main-selector">
+			<span class="simple-banner-desc">You're logged in as {{ session.user_data['name'] }}!</span>
+		</div>
+		<div class="banner-text">Keygen</div>
+	</div>
+	<div class="main-block">
+		<div class="leaderboard-main-bg table-responsive ug-settings rechts-teilung leaderboard-main-bg">
+			<h1 class="descriptor-header">Generate Key!</h1>
+			{% if keygen is not none %}
+				<input name="key" class="descriptor-textfield --readonly" type="text" readonly value="{{ keygen }}"> <br>
+			{% else %}
+				<input name="key" class="descriptor-textfield --readonly" type="text" readonly value="Key"> <br>
+			{% endif %}
+				<form method="post">
+					<input type="submit" name="submit" class="descriptor-submit" value="Generate">
+				</form>
+			<br>
+		</div>
+	</div>
+</div>
+{% endblock %}
