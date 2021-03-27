@@ -68,6 +68,34 @@ async def get_leaderboard():
         log(' '.join(q), Ansi.LGREEN)
     res = await glob.db.fetchall(' '.join(q), args)
     return jsonify(res) if res else b'{}'
+  
+  @api.route('/get_replay')
+async def replay():
+    id = request.args.get('id', type=int)
+    mods = request.args.get('mods', type=str)
+
+    # check if required parameters are met
+    if not id:
+        return b'missing parameters! (id)'
+    
+    if mods not in valid_mods:
+        return b'invalid mods! (vn, rx, ap)'
+
+    # fetch scores
+    q = [f'SELECT scores_{mods}.*, maps.*, users.name FROM scores_{mods}']
+
+    args = []
+
+    q.append(f'JOIN maps ON scores_{mods}.map_md5 = maps.md5')
+    q.append(f'JOIN users ON scores_{mods}.userid = users.id')
+    q.append(f'WHERE scores_{mods}.id = %s')
+    args.append(id)
+
+    if glob.config.debug:
+        log(' '.join(q), Ansi.LGREEN)
+    res = await glob.db.fetch(' '.join(q), args)
+    return jsonify(res) if res else b'{}'
+
 
 """ /get_user_info """
 @api.route('/get_user_info') # GET
